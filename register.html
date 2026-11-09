@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Page</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <nav>
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="pages/about.html">About</a>
+        <a class="nav-link register-link" href="register.html">Register</a>
+    </nav>
+
+    <header>
+        <h1>Register</h1>
+    </header>
+
+    <main>
+        <div class="card">
+            <h2>Registration Page</h2>
+            <p>This is my registration page. A registration form will be added later.</p>
+        </div>
+
+        <form action="#" method="post">
+    <label for="fullname">Full Name:</label>
+    <input type="text" id="fullname" name="fullname" required minlength="2" pattern="[A-Za-z\s]+">
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required minlength="8">
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" min="16" max="99">
+
+    <label for="startdate">Start date:</label>
+    <input type="date" id="startdate" name="startdate">
+
+    <label for="course">Course:</label>
+    <select id="course" name="course">
+        <option value="html">HTML</option>
+        <option value="css">CSS</option>
+    </select>
+
+    <p>Study plan:</p>
+    <label><input type="radio" name="plan" value="full"> Full-time</label>
+    <label><input type="radio" name="plan" value="part"> Part-time</label>
+
+    <label>
+        <input type="checkbox" name="terms" required>
+        I agree to the terms
+    </label>
+
+    <label for="comments">Comments:</label>
+    <textarea id="comments" name="comments" rows="3"></textarea>
+
+    <button type="submit" class="adaptive-btn">Register</button>
+</form>
+
+    </main>
+
+    <footer>
+        <p>My Website - 2026</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+/* Flexbox row layout — sidebar + main content side by side */
+.layout { display: flex; gap: 16px; }
+.sidebar { width: 250px; background: #e2e8f0; padding: 16px; }
+.content { flex: 1; padding: 16px; }
+
+/* On screens 600px or narrower, stack columns vertically */
+@media (max-width: 600px) {
+  .layout { flex-direction: column; }
+  .sidebar { width: 100%; }
+}
+
+/* Styles applied only when printing or using Print Preview */
+@media print {
+  nav, footer, .sidebar { display: none; } /* Hide navigation — not needed on paper */
+  body { font-size: 12pt; color: black; background: white; } /* Readable print colours */
+}
+
+/* Default light theme colours */
+:root { --bg: #ffffff; --text: #1e293b; }
+
+/* Switch to dark colours when OS is in dark mode */
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #0f172a; --text: #f8fafc; }
+}
+
+body { background: var(--bg); color: var(--text); }
+.adaptive-btn { transition: transform 0.3s; }
+
+/* Disable animation for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .adaptive-btn { transition: none; }
+}
+
+/* Full-width inputs on mobile; 16px font prevents iOS zoom */
+@media (max-width: 600px) {
+  input, select, textarea { width: 100%; font-size: 16px; }
+}
+
+/* Default light theme */
+:root {
+    --bg: #ffffff;
+    --text: #1e293b;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0f172a;
+        --text: #f8fafc;
+    }
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+}
+
+.adaptive-btn {
+    transition: transform 0.3s;
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .adaptive-btn {
+        transition: none;
+    }
+}
+
+/* Mobile form styling */
+@media (max-width: 600px) {
+    input, select, textarea {
+        width: 100%;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+}

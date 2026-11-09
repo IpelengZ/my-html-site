@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Offline Notes</title>
+</head>
+<body>
+
+    <h1>Offline Notes</h1>
+
+    <!-- Text area where the user types a note -->
+    <textarea id="note" rows="4" cols="40" placeholder="Type a note..."></textarea>
+    <br>
+
+    <button id="saveBtn">Save locally</button>
+    <button id="loadBtn">Load saved note</button>
+
+    <p id="status"></p>
+    <!-- Shows whether the browser is online or offline -->
+    <p id="onlineStatus"></p>
+
+    <script>
+        // Save note text to localStorage
+        document.getElementById('saveBtn').onclick = () => {
+            localStorage.setItem(
+                'offlineNote',
+                document.getElementById('note').value
+            );
+
+            document.getElementById('status').textContent =
+                'Saved to localStorage';
+        };
+
+        // Load saved note from localStorage
+        document.getElementById('loadBtn').onclick = () => {
+            document.getElementById('note').value =
+                localStorage.getItem('offlineNote') || '';
+
+            document.getElementById('status').textContent =
+                'Loaded from localStorage';
+        };
+
+        // Update the online/offline status
+function updateStatus() {
+    document.getElementById('onlineStatus').textContent =
+        navigator.onLine
+            ? 'Online — data can sync'
+            : 'Offline — using local data only';
+}
+
+// Listen for network status changes
+window.addEventListener('online', updateStatus);
+window.addEventListener('offline', updateStatus);
+
+// Set initial status when the page loads
+updateStatus();
+    </script>
+
+</body>
+</html>

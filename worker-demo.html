@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="runWorker">Run in Worker</button>
+<button id="stopWorker">Stop Worker</button>
+<p id="result"></p>
+<script>
+  let worker;
+
+  // Start background worker and send it a large number to calculate
+  document.getElementById('runWorker').onclick = () => {
+    worker = new Worker('worker.js'); // Load worker.js in a separate thread
+    worker.onmessage = (e) => document.getElementById('result').textContent = e.data;
+    worker.postMessage(10000000); // Send number to worker for calculation
+  };
+
+  // Stop the worker early if needed
+  document.getElementById('stopWorker').onclick = () => { worker?.terminate(); };
+</script>
+</body>
+</html>

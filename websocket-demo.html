@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WebSocket Demo</title>
+</head>
+<body>
+  <h1>WebSocket Demo</h1>
+  <!-- Connection status message -->
+  <p id="status">Connecting...</p>
+  <input id="msgInput" placeholder="Type a message">
+  <button id="sendBtn" disabled>Send</button>
+  <!-- Message log: sent and received messages appear here -->
+  <ul id="log"></ul>
+  <script>
+    const log = document.getElementById('log');
+    const status = document.getElementById('status');
+    const sendBtn = document.getElementById('sendBtn');
+
+    // Connect to public echo server (must use Live Server — not file://)
+    const ws = new WebSocket('wss://echo.websocket.org');
+
+    // Fires when connection opens successfully
+    ws.onopen = () => {
+      status.textContent = 'Connected to echo server';
+      sendBtn.disabled = false; // Enable send button only when connected
+      log.innerHTML += '<li>Connected</li>';
+    };
+
+    // Fires when server sends a message back (echo returns what you sent)
+    ws.onmessage = (e) => log.innerHTML += `<li>Received: ${e.data}</li>`;
+
+    // Fires on connection failure (often caused by opening via file://)
+    ws.onerror = () => {
+      status.textContent = 'Connection error — use Live Server (http://), not file://';
+      log.innerHTML += '<li>Error — open this page with Live Server</li>';
+    };
+
+    // Fires when connection closes
+    ws.onclose = () => {
+      sendBtn.disabled = true;
+      status.textContent = 'Disconnected';
+    };
+
+    // Send typed message to server when user clicks Send
+    sendBtn.onclick = () => {
+      const msg = document.getElementById('msgInput').value;
+      if (!msg.trim()) return;
+      ws.send(msg);
+      log.innerHTML += `<li>Sent: ${msg}</li>`;
+      document.getElementById('msgInput').value = '';
+    };
+  </script>
+</body>
+</html>
