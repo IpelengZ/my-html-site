@@ -1,0 +1,21 @@
+/* Custom primary colour — overrides Bootstrap's default blue */
+:root {
+  --bs-primary: #7c3aed;
+  --bs-primary-rgb: 124, 58, 237;
+}
+
+.btn-primary {
+  background-color: #7c3aed;
+  border-color: #7c3aed;
+  border-radius: 20px; /* Custom pill shape */
+}
+
+.btn-primary:hover {
+  background-color: #6d28d9;
+  border-color: #6d28d9;
+}
+
+.card {
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Custom shadow */
+}

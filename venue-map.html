@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Venue Map</title>
+  <style>
+    .room { cursor: pointer; transition: fill 0.2s; }
+    .room:hover { opacity: 0.85; }
+  </style>
+</head>
+<body>
+  <h1>Conference Venue Map</h1>
+  <p id="roomInfo">Click a room to see details</p>
+  <svg width="500" height="320" viewBox="0 0 500 320">
+    <!-- Main hall -->
+    <rect class="room" data-name="Main Hall" data-capacity="200"
+          x="20" y="20" width="200" height="140" fill="#6366f1" />
+    <!-- Breakout room A -->
+    <rect class="room" data-name="Breakout A" data-capacity="40"
+          x="240" y="20" width="120" height="80" fill="#10b981" />
+    <!-- Breakout room B -->
+    <rect class="room" data-name="Breakout B" data-capacity="40"
+          x="240" y="120" width="120" height="80" fill="#f59e0b" />
+    <!-- Registration -->
+    <rect class="room" data-name="Registration" data-capacity="30"
+          x="20" y="180" width="340" height="60" fill="#64748b" />
+    <text x="120" y="95" fill="white" text-anchor="middle">Main Hall</text>
+    <text x="300" y="65" fill="white" text-anchor="middle" font-size="12">Breakout A</text>
+    <text x="300" y="165" fill="white" text-anchor="middle" font-size="12">Breakout B</text>
+  </svg>
+  <script>
+    // Show room name and capacity when a room is clicked
+    document.querySelectorAll('.room').forEach((room) => {
+      room.addEventListener('click', () => {
+        const name = room.dataset.name;
+        const cap = room.dataset.capacity;
+        document.getElementById('roomInfo').textContent =
+          `${name} — capacity: ${cap} people`;
+      });
+    });
+  </script>
+</body>
+</html>

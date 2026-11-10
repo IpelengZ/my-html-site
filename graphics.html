@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SVG Graphics</title>
+</head>
+<body>
+  <h1>Interactive SVG</h1>
+  <!-- SVG viewport: 400×300 coordinate space -->
+  <svg width="400" height="300" viewBox="0 0 400 300">
+    <!-- Circle changes colour when clicked -->
+    <circle id="hotspot" cx="120" cy="120" r="60" fill="#3b82f6" cursor="pointer" />
+    <rect x="220" y="60" width="120" height="120" fill="#10b981" rx="8" />
+    <text x="130" y="125" fill="white" text-anchor="middle" font-size="14">Click me</text>
+  </svg>
+  <p id="svgStatus">Click the blue circle</p>
+  <script>
+    const circle = document.getElementById('hotspot');
+    const status = document.getElementById('svgStatus');
+    let toggled = false;
+    // Toggle fill colour on each click
+    circle.addEventListener('click', () => {
+      toggled = !toggled;
+      circle.setAttribute('fill', toggled ? '#ef4444' : '#3b82f6');
+      status.textContent = toggled ? 'Circle is red!' : 'Circle is blue — click again';
+    });
+
+  </script>
+  <h2>Canvas Drawing</h2>
+
+<canvas id="artCanvas" width="400" height="200" style="border:1px solid #64748b;"></canvas>
+
+<script>
+  const canvas = document.getElementById('artCanvas');
+  const ctx = canvas.getContext('2d');
+
+  // Background rectangle
+  ctx.fillStyle = '#0f172a';
+  ctx.fillRect(0, 0, 400, 200);
+
+  // Filled circle
+  ctx.beginPath();
+  ctx.arc(100, 100, 50, 0, Math.PI * 2);
+  ctx.fillStyle = '#f59e0b';
+  ctx.fill();
+
+  // Stroked rectangle
+  ctx.strokeStyle = '#38bdf8';
+  ctx.lineWidth = 4;
+  ctx.strokeRect(200, 50, 150, 100);
+
+  // Text label
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '16px sans-serif';
+  ctx.fillText('Canvas API', 215, 105);
+</script>
+</body>
+</html>
